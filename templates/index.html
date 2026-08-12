@@ -1,5 +1,13 @@
-{% extends "layout.html" %}
+<!-- index.html should greet user with input request of tags and
+ other elements to find a list of games within the steamspyapi
+ data base -->
 
-{% block body %}
-    <h1></h1>
+{% extends "layout.html" %}
+{% block main %}
+    <h1>Find Your Game</h1>
+    <form action="/" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto" name="tags" placeholder="Tags" type="text">
+        </div>
+    </form>
 {% endblock %}

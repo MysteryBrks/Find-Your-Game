@@ -1,19 +1,25 @@
 {
+    // The "old way" of debugging. 
+    // It allows for the debug to be done via python code in in vs code
+
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Flask",
+            "name": "Python: Flask",
             "type": "debugpy",
             "request": "launch",
-            "stopOnEntry": false,
-            "program": "${workspaceRoot}/app.py",
+            "module": "app",
             "env": {
-                "FLASK_APP": "${workspaceRoot}/app.py"
+                "FLASK_APP": "app.py",
+                "FLASK_ENV": "development",
+                "FLASK_DEBUG": "1"
             },
             "args": [
-                "run", "--port", "5000"
+                // "run",
+                // "--no-debugger",
+                // "--no-reload"
             ],
-            "envFile": "${workspaceFolder}/.env",
+            "jinja": true
         }
     ]
 }
