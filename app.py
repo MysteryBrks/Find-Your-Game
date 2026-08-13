@@ -13,11 +13,13 @@ def index():
         data_request['request'] = 'tag'
         data_request['tag'] = tags
         data = steamspypi.download(data_request)
-        games = list()
-
-        for elements in data:
-            for info in elements:
-                games.append(info)
+        
+        games = []
+        buffer = {}
+        # Get name of games with request tag
+        for element in data:
+            buffer = data[element]
+            games.append(buffer["name"])
 
         return render_template("game.html", game=games)
     else:
