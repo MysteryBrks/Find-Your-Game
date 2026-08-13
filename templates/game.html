@@ -1,5 +1,11 @@
 {% extends "layout.html" %}
 
 {% block main %}
-    {{ game }}
+    <table class="table table-striped">
+        {% for game in games %}
+        </tr>
+            <td>{{ game.appid }} - {{ game.name }}</td>
+        </tr>
+            {% endfor %}
+    </table>
 {% endblock %}
