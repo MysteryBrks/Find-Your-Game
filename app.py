@@ -15,12 +15,13 @@ def index():
         data = steamspypi.download(data_request)
         
         buffer_dict = {}
-        games = {}
+        games = []
         # Get name of games with request tag
         for index, element in enumerate(data):
             buffer_dict.update(data[element])
 
-            games[index] = data[element]
+            games.append(buffer_dict.copy())
+
 
         return render_template("game.html", games=games)
     else:
