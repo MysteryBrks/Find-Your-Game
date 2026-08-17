@@ -3,12 +3,9 @@
 {% block main %}
     <table class="table table-striped">
         {% for game in games %}
-            {% for element in game.loopindex0 %}
-            </tr>
-                <td>{{ element.appid }} - {{ element.name }}</td>
-            </tr>
-                {% endfor %}
-        
+        </tr>
+            <td>{{ game.appid }} - {{ game.name }}</td>
+        </tr>
         {% endfor %}
     </table>
 {% endblock %}

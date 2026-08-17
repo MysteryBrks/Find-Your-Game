@@ -7,21 +7,21 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        tags = request.form.get("tags")
+        genre = request.form.get("genre")
         # Pull steam games informatiom 
         data_request = dict()
-        data_request['request'] = 'tag'
-        data_request['tag'] = tags
+        data_request['request'] = 'genre'
+        data_request['genre'] = genre
+
         data = steamspypi.download(data_request)
         
         buffer_dict = {}
         games = []
         # Get name of games with request tag
-        for index, element in enumerate(data):
+        for element in data:
             buffer_dict.update(data[element])
 
             games.append(buffer_dict.copy())
-
 
         return render_template("game.html", games=games)
     else:
