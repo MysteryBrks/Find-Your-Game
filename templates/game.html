@@ -1,5 +1,11 @@
 {% extends "layout.html" %}
 
 {% block main %}
-    {{ game }}
+    <table class="table table-striped">
+        {% for game in games %}
+        </tr>
+            <td> <a href="https://store.steampowered.com/app/{{ game.appid }}/{{ game.name }}">{{ game.name}}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

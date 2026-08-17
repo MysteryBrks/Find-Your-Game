@@ -7,23 +7,26 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        tags = request.form.get("tags")
+        genre = request.form.get("genre")
         # Pull steam games informatiom 
         data_request = dict()
-        data_request['request'] = 'tag'
-        data_request['tag'] = tags
+        data_request['request'] = 'genre'
+        data_request['genre'] = genre
+
         data = steamspypi.download(data_request)
         
+        buffer_dict = {}
         games = []
-        buffer = {}
         # Get name of games with request tag
         for element in data:
-            buffer = data[element]
-            games.append(buffer["name"])
+            buffer_dict.update(data[element])
 
-        return render_template("game.html", game=games)
+            games.append(buffer_dict.copy())
+
+        return render_template("game.html", games=games)
     else:
         return render_template("index.html")
+
 
 # Allows for seeing flask changes dinamically
 # while using the python code debug method.
