@@ -4,7 +4,7 @@
     <table class="table table-striped">
         {% for game in games %}
         </tr>
-            <td>{{ game.appid }} - {{ game.name }}</td>
+            <td> <a href="https://store.steampowered.com/app/{{ game.appid }}/{{ game.name }}">{{ game.name}}</a></td>
         </tr>
         {% endfor %}
     </table>
