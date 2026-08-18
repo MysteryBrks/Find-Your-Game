@@ -1,11 +1,9 @@
 {% extends "layout.html" %}
 
 {% block main %}
-    <table class="table table-striped">
-        {% for game in games %}
-        </tr>
-            <td> <a href="https://store.steampowered.com/app/{{ game.appid }}/{{ game.name }}">{{ game.name}}</a></td>
-        </tr>
-        {% endfor %}
-    </table>
+    {% for game in games %}
+        <div class="mb-3">
+            <iframe src="https://store.steampowered.com/widget/{{ game.appid }}/" frameborder="0" width="646" height="190"></iframe>
+        </div>
+    {% endfor %}
 {% endblock %}

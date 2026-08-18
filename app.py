@@ -10,8 +10,7 @@ def index():
         genre = request.form.get("genre")
         # Pull steam games informatiom 
         data_request = dict()
-        data_request['request'] = 'genre'
-        data_request['genre'] = genre
+        data_request['request'] = 'top100forever'
 
         data = steamspypi.download(data_request)
         
@@ -22,6 +21,7 @@ def index():
             buffer_dict.update(data[element])
 
             games.append(buffer_dict.copy())
+        print(games)
 
         return render_template("game.html", games=games)
     else:
