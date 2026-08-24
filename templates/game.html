@@ -10,10 +10,13 @@
         <nav aria-label="Page navigation">
             <ul class="pagination">
                 {% if page > 1 %}
-                <li class="page-item"><a class="page-link" href="{{ url_for('game', page=page-1) }}">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="{{ url_for('game', page=page-1) }}">Previous</a></li>
                 {% endif %}
+                {% for p in range(1, total_pages + 1) %}
+                    <li class="page-item"><a class="page-link" href="{{ url_for('game', page=p) }}">{{ p }}</a></li>
+                {% endfor %}
                 {% if page < total_pages %}
-                <li class="page-item"><a class="page-link" href="{{ url_for('game', page=page+1) }}">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="{{ url_for('game', page=page+1) }}">Next</a></li>
                 {% endif %}
             </ul>
         </nav>

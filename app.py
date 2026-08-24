@@ -17,7 +17,8 @@ def index():
         genre = request.form.get("genre")
         # Pull steam games informatiom 
         data_request = dict()
-        data_request['request'] = 'top100forever'
+        data_request['request'] = 'genre'
+        data_request['genre'] = genre
         
         data = steamspypi.download(data_request)
         buffer_dict = {}
