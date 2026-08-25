@@ -1,1 +1,3 @@
-Flask, steamspypi
+Flask, 
+steamspypi,
+flask-paginate

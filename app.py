@@ -2,6 +2,8 @@ import steamspypi
 
 from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
+from flask_paginate import Pagination, get_page_parameter
+
 
 app = Flask(__name__)
 
@@ -17,8 +19,8 @@ def index():
         genre = request.form.get("genre")
         # Pull steam games informatiom 
         data_request = dict()
-        data_request['request'] = 'genre'
-        data_request['genre'] = genre
+        data_request["request"] = "genre"
+        data_request["genre"] = genre
         
         data = steamspypi.download(data_request)
         buffer_dict = {}
@@ -41,16 +43,15 @@ def index():
 @app.route("/game")
 def game():
         # Distribute games with pagination system, improved perfomace.
-        page = request.args.get("page", 1, type=int)
-        per_page = 10
-        start = (page - 1) * per_page
-        end = start + per_page
+        search=False
         games = session.get("games")
-        total_pages = (len(games) + per_page - 1) // per_page
 
-        games = games[start:end]
-
-        return render_template("game.html", games=games, page=page, total_pages=total_pages)
+        page = request.args.get(get_page_parameter(),type=int, default=1)
+        start = (page - 1) * 10
+        end = start + 10
+        pagination = Pagination(page=page, per_page=10, total=len(games), search=search, record_name="games")
+        games= games[start:end]
+        return render_template("game.html", games=games, pagination=pagination)
 
 
 # Allows for seeing flask changes dinamically

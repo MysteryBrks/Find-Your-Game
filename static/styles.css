@@ -6,4 +6,10 @@ body {
 nav {
     display: flex;
     justify-content: center;
+
+}
+
+/* Remove the (current) in pagination. Ex: 1(Current) */
+.sr-only {
+    display: none;
 }
