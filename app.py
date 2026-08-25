@@ -47,10 +47,13 @@ def game():
         games = session.get("games")
 
         page = request.args.get(get_page_parameter(),type=int, default=1)
-        start = (page - 1) * 10
-        end = start + 10
-        pagination = Pagination(page=page, per_page=10, total=len(games), search=search, record_name="games")
+        per_page = 10
+
+        start = (page - 1) * per_page
+        end = start + per_page
+        pagination = Pagination(page=page, per_page=per_page, total=len(games), search=search, record_name="games")
         games= games[start:end]
+
         return render_template("game.html", games=games, pagination=pagination)
 
 
