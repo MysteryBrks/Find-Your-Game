@@ -16,13 +16,14 @@ def index():
     if request.method == "POST":
         session.clear()
 
-        genre = request.form.get("genre")
+        genre = request.form.getlist("genre")
         # Pull steam games informatiom 
         data_request = dict()
         data_request["request"] = "genre"
         data_request["genre"] = genre
         
-        data = steamspypi.download(data_request)
+        for element in data_request["genre"]:
+            data = steamspypi.download(element)
         buffer_dict = {}
         games = []
 

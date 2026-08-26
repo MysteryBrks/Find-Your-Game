@@ -7,7 +7,15 @@
     <h1>Find Your Game</h1>
     <form action="/" method="post">
         <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto" name="genre" placeholder="Genre" type="text">
+            <label for="genres">Genre</label>
+
+            <select id="genres" name="genre" multiple>
+                <option value="Strategy">Strategy</option>
+                <option value="Action">Action</option>
+                <option value="Adventure">Adventure</option>
+            </select>
+
+            <input type="submit" value="Submit">
         </div>
     </form>
 {% endblock %}
