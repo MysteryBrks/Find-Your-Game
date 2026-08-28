@@ -20,18 +20,27 @@ def index():
         # Pull steam games informatiom 
         data_request = dict()
         data_request["request"] = "genre"
-        data_request["genre"] = genre
-        
-        for element in data_request["genre"]:
-            data = steamspypi.download(element)
-        buffer_dict = {}
-        games = []
+        buffer= {}
+        data = {}
 
+        for element in genre:    
+            data_request["genre"] = element
+            buffer = steamspypi.download(data_request)
+            buffer_keys = []
+
+            for dictionary in buffer:
+                buffer_keys.append(dictionary)
+            for key in buffer_keys:
+                    if key not in data.keys():
+                        data.update({key:buffer[key]})
+                    
+
+        games = []
         # Get name of games with request tag
         for element in data:
-            buffer_dict.update(data[element])
+            buffer.update(data[element])
 
-            games.append(buffer_dict.copy())
+            games.append(buffer.copy())
 
         # Store the data goblally on session
         session["games"] = games
