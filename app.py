@@ -16,7 +16,7 @@ def index():
     if request.method == "POST":
         session.clear()
 
-        genre = request.form.getlist("genre")
+        genre = request.form.getlist("genres")
         # Pull steam games informatiom 
         data_request = dict()
         data_request["request"] = "genre"
