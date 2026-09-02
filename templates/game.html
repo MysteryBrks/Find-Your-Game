@@ -3,7 +3,7 @@
 {% block main %}
     {% for game in games %}
         <div class="mb-3" id="{{ game.name }}">
-            <iframe src="https://store.steampowered.com/widget/{{ game.appid }}/" frameborder="0" width="646" height="190"></iframe>
+            <iframe src="https://store.steampowered.com/widget/{{ game }}/" frameborder="0" width="646" height="190"></iframe>
         </div>
     {% endfor %}
 {{ pagination.links }}

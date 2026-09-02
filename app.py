@@ -20,20 +20,29 @@ def index():
         # Pull steam games informatiom 
         data_request = dict()
         data_request["request"] = "genre"
-        data_request["genre"] = genre
-        
-        for element in data_request["genre"]:
-            data = steamspypi.download(element)
-        buffer_dict = {}
+        buffer= {}
+        data = {}
         games = []
 
-        # Get name of games with request tag
-        for element in data:
-            buffer_dict.update(data[element])
+        # Takes the firt genre selected
+        data_request["genre"] = genre[0]
+        data = steamspypi.download(data_request)
+        # Proceeds to compare to every other genre,
+        # if appid isn't in ALL selected genres, it's
+        # removed from data.
+        for element in genre[1:]:    
+            data_request["genre"] = element
+            buffer = steamspypi.download(data_request)
+            data_buffer = data.copy()
 
-            games.append(buffer_dict.copy())
+            for key in data_buffer:
+                if key not in buffer:
+                    data.pop(key, None)
 
-        # Store the data goblally on session
+        for game in data:
+             games.append(game)
+
+        # Store the data globally on session
         session["games"] = games
 
         return redirect("/game")
@@ -48,7 +57,7 @@ def game():
         games = session.get("games")
 
         page = request.args.get(get_page_parameter(),type=int, default=1)
-        per_page = 10
+        per_page = 15
 
         start = (page - 1) * per_page
         end = start + per_page
