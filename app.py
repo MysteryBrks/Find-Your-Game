@@ -11,12 +11,18 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+
 @app.route("/", methods=["GET", "POST"])
 def index():
+    genres = ("Adventure", "Action", "Strategy")
+    tags = ("2D", "3D", "Controller")
+
+    for genre in genres:
+         ...
     if request.method == "POST":
         session.clear()
 
-        genre = request.form.getlist("genres")
+        genres_available = request.form.getlist("genres")
         # Pull steam games informatiom 
         data_request = dict()
         data_request["request"] = "genre"
@@ -47,7 +53,7 @@ def index():
 
         return redirect("/game")
     else:
-        return render_template("index.html")
+        return render_template("index.html", genres=genres, tags=tags)
 
 
 @app.route("/game")
