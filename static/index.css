@@ -1,0 +1,47 @@
+span {
+    width: 350px !important;
+}
+
+/* Background of span */
+span.select2-selection {
+    background-color: #50586d !important;
+}
+
+li {
+    border-color: black !important;
+}
+
+button {
+    border-style: none !important;
+    color: aliceblue !important;
+}
+
+input {
+    background-color:#404270 !important;
+    border-color: aliceblue !important;
+}
+
+/* Options to be selected color */
+li.select2-results__option--selectable {
+    background-color: #404270 !important;
+}
+
+/* Options selected color */
+li.select2-selection__choice {
+    background-color: #404270 !important;
+}
+
+li.select2-results__option--highlighted {
+    background-color: #618aac !important;
+}
+
+li.select2-results__option--selected {
+    background-color: #50586d !important;
+}
+
+li.select2-results__message {
+    background-color: #50586d !important;
+}
+
+/* !important is needed to overwrite select2 stylesheet */
+

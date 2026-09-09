@@ -7,21 +7,23 @@
     <h1>Find Your Game</h1>
     <form action="/" method="post">
         <div class="mb-3">
-            <label for="genres-label">Genre</label>
             <select class="js-example-basic-multiple" multiple="multiple" name="genres">
                 {% for genre in genres %}
                 <option value="{{ genre }}">{{ genre }}</option>
                 {% endfor %}
             </select>
 
-            <label for="tags-label">Tags</label>
+        </div>
+        
+        <div class="mb-3">            
             <select class="js-example-basic-multiple" multiple="multiple" name="tags">
                 {% for tag in tags %}
                 <option value="{{ tag }}">{{ tag }}</option>
                 {% endfor %}
-            </select>
-
-            <input class="btn btn-primary" type="submit" value="Submit">
+            </select>       
         </div>
+        <input class="btn btn-primary" type="submit" value="Submit">
     </form>
+
+     <link rel="stylesheet" href="static/index.css">
 {% endblock %}
