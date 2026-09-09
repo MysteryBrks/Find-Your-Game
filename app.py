@@ -14,9 +14,40 @@ Session(app)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    genres_available = ("Adventure", "Action", "Strategy")
-    tags_available = ("2D", "3D", "Controller", "Relaxing", "Funny",
-                       "Anime", "Multiple Endings", "Choices Matter")
+    genres_available = ("Adventure", "Action", "Strategy", "Indie","Casual", "Simulation",
+                         "RPG", "Strategy", "Free to Play", "Early Acess", "Sports",
+                           "Racing", "Massively Multiplayer")
+    
+    tags_available = ("2D", "3D", "Controller", "Relaxing", "Funny", "Singleplayer"
+                       "Anime", "Multiple Endings", "Choices Matter", "Atmospheric",
+                       "Story Rich", "Fantasy", "Multiplayer", "Cute", "Exploration",
+                       "Pixel Graphics", "Combat", "First-Person", "Puzzle", "Stylized",
+                       "Arcade", "PvE", "Horro", "Sci-fi", "Third Person", "Top-Down",
+                       "Retro", "Family Friendly", "Violent", "Shooter", "Female Protagonist",
+                       "Dark", "PvP", "Sexual Content", "Realistic", "Mystery", "Online Co-Op",
+                       "Linear", "Open World", "Survival", "Physics", "Cartoony", "Visual Novel",
+                       "Psychologial Horror", "Platformer", "Gore", "Roguelike", "Magic", "Roguelite",
+                       "Sandbox", "Management", "Tactical", "Medieval", "Hand-drawn", "FPS",
+                       "Immersive Sim", "Crafting", "Building", "Futuristic",
+                       "Point & Click", "Dark Fantasy", "Emotional", "Procedural Generation", "Space",
+                       "Difficult", "Romance", "Choose Your Own Adventure", "Nature", "Logic", 
+                       "Survival Horror", "Hentai", "Base Building", "Hack and Slash", "Dating Sim",
+                       "Bullet Hell", "Post-apocalyptic", "Side Scroller", "VR", "Dungeon Crawler",
+                       "Walking Simulator", "Life Sim", "Economy", "Cinematic", "Card Game", "Tabletop",
+                       "Dialogue Heavy", "Text-Based", "War", "Idler", "Psychologial", "Stealth", 
+                       "Zombies", "JRPG", "LGBTQ+", "Local Co-Op", "Historical", "Thriller", "2.5D",
+                       "Isometric", "Military", "Replay Value", "Turn-Based", "Demons", "Alien", 
+                       "Cyberpunk", "Cozy", "Detective", "Robots", "Dystopian", "RTS", "CRPG", "Board Game",
+                       "Souls-like", "Capitalism", "Cats", "Destruction", "Parkour", "Moddable",
+                       "Metroidvania", "Party Game", "Cooking", "Farming Sim", "Competitive", "Rhythm",
+                       "Fighting", "MMORPG", "Noir", "Colony Sim", "Space Sim", "Grand Strategy",
+                       "Looter Shooter", "Narrative", "Classic", "Battle Royale", "Split Screen", "Fishing",
+                       "World War II", "Gambling", "Dogs", "Hero Shooter", "Voxel", "Immersive",
+                       "Time Travel", "Vampires", "Pirates", "Steampunk", "Political Sim", "Hunting",
+                       "MOBA", "Diplomacy", "Western", "Cold War", "Naval Combat", "Escape Room",
+                       "Villain Protagonist", "Werewolves", "World War I", "Outbreak Sim", "Dwarves",
+                       "Spaceships", "Social Deduction", "Medical Sim", "Dice", "Vikings",
+                       "Silent Protagonist", "Espionage", "Poker", "Tanks", "Minigames", "FMV")
     
     if request.method == "POST":
         session.clear()
