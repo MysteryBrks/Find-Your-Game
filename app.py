@@ -14,16 +14,15 @@ Session(app)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    genres = ("Adventure", "Action", "Strategy")
-    tags = ("2D", "3D", "Controller")
-
-    for genre in genres:
-         ...
+    genres_available = ("Adventure", "Action", "Strategy")
+    tags_available = ("2D", "3D", "Controller", "Relaxing", "Funny",
+                       "Anime", "Multiple Endings", "Choices Matter")
+    
     if request.method == "POST":
         session.clear()
 
-        genres_available = request.form.getlist("genres")
-        # Pull steam games informatiom 
+        genres = request.form.getlist("genres")
+        # Pull steam games by genres
         data_request = dict()
         data_request["request"] = "genre"
         buffer= {}
@@ -31,19 +30,33 @@ def index():
         games = []
 
         # Takes the firt genre selected
-        data_request["genre"] = genre[0]
+        data_request["genre"] = genres[0]
         data = steamspypi.download(data_request)
         # Proceeds to compare to every other genre,
         # if appid isn't in ALL selected genres, it's
         # removed from data.
-        for element in genre[1:]:    
-            data_request["genre"] = element
+        for genre in genres[1:]:    
+            data_request["genre"] = genre
             buffer = steamspypi.download(data_request)
             data_buffer = data.copy()
 
-            for key in data_buffer:
+            for key in data_buffer: 
                 if key not in buffer:
                     data.pop(key, None)
+
+        data_request.clear()
+        # Pulls steam games by tags
+        tags = request.form.getlist("tags")
+        data_request["request"] = "tag"
+
+        for tag in tags:
+             data_request["tag"] = tag
+             buffer = steamspypi.download(data_request)
+             data_buffer = data.copy()
+
+             for key in data_buffer:
+                  if key not in buffer:
+                       data.pop(key, None)
 
         for game in data:
              games.append(game)
@@ -53,7 +66,7 @@ def index():
 
         return redirect("/game")
     else:
-        return render_template("index.html", genres=genres, tags=tags)
+        return render_template("index.html", genres=genres_available, tags=tags_available)
 
 
 @app.route("/game")
@@ -67,7 +80,8 @@ def game():
 
         start = (page - 1) * per_page
         end = start + per_page
-        pagination = Pagination(page=page, per_page=per_page, total=len(games), search=search, record_name="games")
+        pagination = Pagination(page=page, per_page=per_page, total=len(games),
+                                 search=search, record_name="games")
         games= games[start:end]
 
         return render_template("game.html", games=games, pagination=pagination)
