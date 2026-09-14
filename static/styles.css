@@ -1,8 +1,8 @@
-nav {
+.navbar {
     background-color: rgb(12, 12, 34);
 }
 
-a {
+a.navbar-brand {
     color: aliceblue !important;
 }
 
