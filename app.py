@@ -55,7 +55,7 @@ def index():
         genres = request.form.getlist("genres")
         tags = request.form.getlist("tags")
         # User input validation
-        if not genres or not tags:
+        if not tags:
             return redirect("/")
 
         # Pull steam games by genres
@@ -65,33 +65,46 @@ def index():
         data = {}
         games = []
 
-        # Takes the firt genre selected
-        data_request["genre"] = genres[0]
-        data = steamspypi.download(data_request)
-        # Proceeds to compare to every other genre,
-        # if appid isn't in ALL selected genres, it's
-        # removed from data.
-        for genre in genres[1:]:    
-            data_request["genre"] = genre
-            buffer = steamspypi.download(data_request)
-            data_buffer = data.copy()
+        if genres:
+            # Takes the first genre selected
+            data_request["genre"] = genres[0]
+            data = steamspypi.download(data_request)
 
-            for key in data_buffer: 
-                if key not in buffer:
-                    data.pop(key, None)
+            # Proceeds to compare to every other genre,
+            # if appid isn't in ALL selected genres, it's
+            # removed from data.
+            for genre in genres[1:]:    
+                data_request["genre"] = genre
+                buffer = steamspypi.download(data_request)
+                data_buffer = data.copy()
 
-        data_request.clear()
-        # Pulls steam games by tags
-        data_request["request"] = "tag"
+                for key in data_buffer: 
+                    if key not in buffer:
+                        data.pop(key, None)
+            data_request.clear()
 
-        for tag in tags:
-             data_request["tag"] = tag
-             buffer = steamspypi.download(data_request)
-             data_buffer = data.copy()
+            data_request["request"] = "tag"
+            for tag in tags:
+                data_request["tag"] = tag
+                buffer = steamspypi.download(data_request)
+                data_buffer = data.copy()
 
-             for key in data_buffer:
-                  if key not in buffer:
-                       data.pop(key, None)
+                for key in data_buffer:
+                    if key not in buffer:
+                        data.pop(key, None)
+        else:
+            data_request["request"] = "tag"
+            data_request["tag"] = tags[0]
+            data = steamspypi.download(data_request)
+
+            for tag in tags[1:]:
+                data_request["tag"] = tag
+                buffer = steamspypi.download(data_request)
+                data_buffer = data.copy()
+
+                for key in data_buffer:
+                    if key not in buffer:
+                        data.pop(key, None)
 
         for game in data:
              games.append(game)

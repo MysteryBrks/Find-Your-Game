@@ -4,7 +4,7 @@ $(document).ready(function() {
         allowClear: true
     });
     $('[name="tags"]').select2({
-        placeholder: 'Search Tags',
+        placeholder: 'Search Tags (min: 1)',
         allowClear: true
     });
 });
