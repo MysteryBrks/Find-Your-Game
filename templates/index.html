@@ -4,10 +4,10 @@
 
 {% extends "layout.html" %}
 {% block main %}
-    <h1>Find Your Game</h1>
+    <h1 class="mb-5">Find Your Game</h1>
     <form action="/" method="post">
         <div class="mb-3">
-            <select class="js-example-basic-multiple" multiple="multiple" name="genres">
+            <select class="js-basic-multiple" multiple="multiple" name="genres">
                 {% for genre in genres %}
                 <option value="{{ genre }}">{{ genre }}</option>
                 {% endfor %}
@@ -15,12 +15,20 @@
 
         </div>
         
-        <div class="mb-3">            
-            <select class="js-example-basic-multiple" multiple="multiple" name="tags">
+        <div class="mb-4">            
+            <select class="js-basic-multiple" multiple="multiple" name="tags">
                 {% for tag in tags %}
                 <option value="{{ tag }}">{{ tag }}</option>
                 {% endfor %}
             </select>       
+        </div>
+
+        <div class="mb-4">
+            <select class="js-basic-multiple" multiple="multiple" name="excludeds">
+                {% for tag in tags %}
+                <option value="{{ tag }}">{{ tag }}</option>
+                {% endfor %}
+            </select>
         </div>
         <input class="btn btn-primary" type="submit" value="Submit">
     </form>

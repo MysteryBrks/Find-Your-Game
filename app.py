@@ -15,14 +15,14 @@ Session(app)
 @app.route("/", methods=["GET", "POST"])
 def index():
     genres_available = ("Adventure", "Action", "Strategy", "Indie","Casual", "Simulation",
-                         "RPG", "Strategy", "Free to Play", "Early Acess", "Sports",
+                         "RPG", "Free to Play", "Early Acess", "Sports",
                            "Racing", "Massively Multiplayer")
     
     tags_available = ("2D", "3D", "Controller", "Relaxing", "Funny", "Singleplayer"
                        "Anime", "Multiple Endings", "Choices Matter", "Atmospheric",
                        "Story Rich", "Fantasy", "Multiplayer", "Cute", "Exploration",
                        "Pixel Graphics", "Combat", "First-Person", "Puzzle", "Stylized",
-                       "Arcade", "PvE", "Horro", "Sci-fi", "Third Person", "Top-Down",
+                       "Arcade", "PvE", "Horror", "Sci-fi", "Third Person", "Top-Down",
                        "Retro", "Family Friendly", "Violent", "Shooter", "Female Protagonist",
                        "Dark", "PvP", "Sexual Content", "Realistic", "Mystery", "Online Co-Op",
                        "Linear", "Open World", "Survival", "Physics", "Cartoony", "Visual Novel",
@@ -54,6 +54,7 @@ def index():
 
         genres = request.form.getlist("genres")
         tags = request.form.getlist("tags")
+        excludeds = request.form.getlist("excludeds")
         # User input validation
         if not tags:
             return redirect("/")
@@ -104,6 +105,16 @@ def index():
 
                 for key in data_buffer:
                     if key not in buffer:
+                        data.pop(key, None)
+
+        if excludeds:
+            for excluded in excludeds:
+                data_request["tag"] = excluded
+                buffer = steamspypi.download(data_request)
+                data_buffer = data.copy()
+
+                for key in data_buffer:
+                    if key in buffer:
                         data.pop(key, None)
 
         for game in data:
