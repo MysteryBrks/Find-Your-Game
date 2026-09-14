@@ -53,6 +53,11 @@ def index():
         session.clear()
 
         genres = request.form.getlist("genres")
+        tags = request.form.getlist("tags")
+        # User input validation
+        if not genres or not tags:
+            return redirect("/")
+
         # Pull steam games by genres
         data_request = dict()
         data_request["request"] = "genre"
@@ -77,7 +82,6 @@ def index():
 
         data_request.clear()
         # Pulls steam games by tags
-        tags = request.form.getlist("tags")
         data_request["request"] = "tag"
 
         for tag in tags:
