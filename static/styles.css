@@ -6,6 +6,10 @@ a.navbar-brand {
     color: aliceblue !important;
 }
 
+a.nav-link {
+    color: aliceblue !important
+}
+
 body {
     color: aliceblue;
     background-color: #1b1d38;
@@ -19,4 +23,12 @@ nav {
 /* Remove the (current) in pagination. Ex: 1(Current) */
 .sr-only {
     display: none;
+}
+
+p {
+    font-size: x-large;
+}
+
+.tutorial {
+    display: inline-block;
 }

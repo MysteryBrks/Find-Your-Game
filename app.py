@@ -146,6 +146,10 @@ def game():
         return render_template("game.html", games=games, pagination=pagination)
 
 
+@app.route("/manual")
+def manual():
+    return render_template("manual.html")
+
 # Allows for seeing flask changes dinamically
 # while using the python code debug method.
 # DO NOT TOUCH
