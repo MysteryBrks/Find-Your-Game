@@ -31,7 +31,7 @@ def index():
                        "Immersive Sim", "Crafting", "Building", "Futuristic",
                        "Point & Click", "Dark Fantasy", "Emotional", "Procedural Generation", "Space",
                        "Difficult", "Romance", "Choose Your Own Adventure", "Nature", "Logic", 
-                       "Survival Horror", "Hentai", "Base Building", "Hack and Slash", "Dating Sim",
+                       "Survival Horror", "Base Building", "Hack and Slash", "Dating Sim",
                        "Bullet Hell", "Post-apocalyptic", "Side Scroller", "VR", "Dungeon Crawler",
                        "Walking Simulator", "Life Sim", "Economy", "Cinematic", "Card Game", "Tabletop",
                        "Dialogue Heavy", "Text-Based", "War", "Idler", "Psychologial", "Stealth", 
