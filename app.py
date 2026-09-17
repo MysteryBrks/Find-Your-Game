@@ -123,12 +123,12 @@ def index():
         # Store the data globally on session
         session["games"] = games
 
-        return redirect("/game")
+        return redirect("/games")
     else:
         return render_template("index.html", genres=genres_available, tags=tags_available)
 
 
-@app.route("/game")
+@app.route("/games")
 def game():
         # Distribute games with pagination system, improved perfomace.
         search=False
@@ -143,7 +143,7 @@ def game():
                                  search=search, record_name="games")
         games= games[start:end]
 
-        return render_template("game.html", games=games, pagination=pagination)
+        return render_template("games.html", games=games, pagination=pagination)
 
 
 @app.route("/manual")
