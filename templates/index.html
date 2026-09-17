@@ -31,6 +31,12 @@
                 {% endfor %}
             </select>
         </div>
+
+        <div class="mb-4">
+            <label for="copies">Copies sold/owners: </label>
+            <input type="range" name="copies" min="0" max="50000000" step="100000" oninput="this.nextElementSibling.value = this.value">
+            <output>25000000</output>
+        </div>
         <input class="mb-5 btn btn-primary" type="submit" value="Submit">
     </form>
     <p>PS: Keep in mind tags are assigned to games by steam users and

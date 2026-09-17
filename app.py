@@ -1,4 +1,5 @@
 import steamspypi
+import re
 
 from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
@@ -55,6 +56,7 @@ def index():
         genres = request.form.getlist("genres")
         tags = request.form.getlist("tags")
         excludeds = request.form.getlist("excludeds")
+        copies = int(request.form.get("copies"))
         # User input validation
         if not tags:
             return redirect("/")
@@ -116,6 +118,15 @@ def index():
                 for key in data_buffer:
                     if key in buffer:
                         data.pop(key, None)
+
+        if copies:
+            data_buffer = data.copy()
+            for key in data_buffer:
+                numbers = (re.findall(r"\d+", data[key]["owners"].replace(",","")))
+                numbers = list(map(int, numbers))
+                # Verify if games are in the desired range of copies
+                if not numbers[0] <= copies <= numbers[1]: 
+                    data.pop(key, None)
 
         for game in data:
              games.append(game)
