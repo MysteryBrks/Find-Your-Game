@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('[name="genres"]').select2({
-        placeholder: 'Search Genre (Optional)',
+        placeholder: 'Search Genres (Optional)',
         allowClear: true
     });
     $('[name="tags"]').select2({
