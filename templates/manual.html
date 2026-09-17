@@ -2,14 +2,33 @@
     <title>Manual</title>
 {% block main %}
     <h1 class="mb-4">How to use</h1>
-    <div class="mb-5"><p>Find Your Game is a web site with the solo function of
+    <div class="mb-5 presentation"><p>Find Your Game is a web site with the solo function of
         finding hidden or maybe unseen games by the user on the steam, 
         based on it's preferences you are suposse to find new games to try out.
-        Here are some simple instructions to use it and find a desired amount of games,
-        not a enormous catalog or no game at all:
+        Here are some simple instructions to use it and find a desired amount of games:
     </p></div>
 
-    <div class="mb-5 tutorial"><img src="static/images/Tutorial.png"></div>
-    <div class="mb-5 tutorial"><img src="static/images/Tutorial2.png"></div>
-    <div class="mb-5 tutorial"><img src="static/images/Tutorial3.png"></div>
+    <div class="mb-5 tutorial">
+        <img src="static/images/Tutorial.png">
+        <p class="explanation">The first two selections are Genres (wich are optional)
+        and Tags. The latter is the one you're supposed to give more attention, it'll
+        show more accurate desired games and you have to submit at least one. At last
+        it's not recommended to use two opposing tags, for example: "Gore" and "Family Friendly"
+        (The result might as well give you no games at all). Despite that, it's greatly
+        encouraged testing and exploration, go wild. </p>
+    </div>
+    <div class="color"></div>
+    <div class="mb-5 tutorial">
+        <img src="static/images/Tutorial2.png">
+        <p class="explanation">The third selection is designed for excluding undesired tags.
+        For example, you may want to search for Strategy (Genre), Diplomacy (Tag) games that
+        are NOT in World War II. In this case you can have World War II in the excluded tags.</p>
+    </div>
+    <div class="mb-5 tutorial">
+        <img src="static/images/Tutorial3.png">
+        <p class="explanation">After submiting your desired preferences, in the games page
+            you may find some steam widgets not working correctly. When this happens you can click
+            on the bottom right corner steam icon to be directed to the game's steam page.
+        </p>
+    </div>
 {% endblock %}

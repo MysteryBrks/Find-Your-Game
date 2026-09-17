@@ -25,10 +25,18 @@ nav {
     display: none;
 }
 
-p {
+.presentation {
     font-size: x-large;
 }
 
-.tutorial {
-    display: inline-block;
+.explanation {
+    font-size: large;
+    text-wrap: balance;
+    width: 65%;
+    text-align: center;
+    margin: auto;
+}
+
+.color {
+    background-color: aliceblue;
 }
