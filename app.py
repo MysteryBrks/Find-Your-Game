@@ -56,7 +56,8 @@ def index():
         genres = request.form.getlist("genres")
         tags = request.form.getlist("tags")
         excludeds = request.form.getlist("excludeds")
-        copies = int(request.form.get("copies"))
+        min_copies = int(request.form.get("min copies"))
+        max_copies = int(request.form.get("max copies"))
         # User input validation
         if not tags:
             return redirect("/")
@@ -119,13 +120,13 @@ def index():
                     if key in buffer:
                         data.pop(key, None)
 
-        if copies:
+        if min_copies or max_copies:
             data_buffer = data.copy()
             for key in data_buffer:
-                numbers = (re.findall(r"\d+", data[key]["owners"].replace(",","")))
-                numbers = list(map(int, numbers))
+                copies_estimative = (re.findall(r"\d+", data[key]["owners"].replace(",","")))
+                copies_estimative = (int(copies_estimative[0]) + int(copies_estimative[1])) / 2
                 # Verify if games are in the desired range of copies
-                if not numbers[0] <= copies <= numbers[1]: 
+                if not min_copies <= copies_estimative <= max_copies:
                     data.pop(key, None)
 
         for game in data:
