@@ -38,5 +38,6 @@ nav {
 }
 
 .color {
-    background-color: aliceblue;
+    height: 2px !important;
+    background-color: aliceblue !important;
 }
