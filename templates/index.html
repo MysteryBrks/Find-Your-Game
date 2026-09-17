@@ -20,7 +20,8 @@
                 {% for tag in tags %}
                 <option value="{{ tag }}">{{ tag }}</option>
                 {% endfor %}
-            </select>       
+            </select>
+            <p>Recomended number: 2-3</p>       
         </div>
 
         <div class="mb-4">
@@ -30,8 +31,10 @@
                 {% endfor %}
             </select>
         </div>
-        <input class="btn btn-primary" type="submit" value="Submit">
+        <input class="mb-5 btn btn-primary" type="submit" value="Submit">
     </form>
-
+    <p>PS: Keep in mind tags are assigned to games by steam users and
+        strange results are expected.
+    </p>
      <link rel="stylesheet" href="static/index.css">
 {% endblock %}
