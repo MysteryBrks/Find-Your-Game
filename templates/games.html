@@ -1,13 +1,7 @@
 {% extends "layout.html" %}
 
 {% block main %}
-    {% if not game %}
-        <div class="mb-3">
-            <h3>Sorry! We couldn't find any games</h3>
-            <p>Try changing your chosen tags, included and excluded or genres.
-            Maybe change for a more inclusive search with more tags.</p>
-        </div>
-    {% else %}
+    {% if games %}
         {% for game in games %}
             <div class="mb-3" id="{{ game.name }}">
                 <iframe src="https://store.steampowered.com/widget/{{ game }}/" title="{{ game }}" frameborder="0" width="646" height="190"></iframe>
@@ -16,6 +10,12 @@
                 </a>
             </div>
         {% endfor %}
+    {% else %}
+        <div class="mb-3">
+            <h3>Sorry! We couldn't find any games</h3>
+            <p>Try changing your chosen tags, included and excluded or genres.
+            Maybe change for a more inclusive search with more tags.</p>
+        </div>
     {% endif %}
 {{ pagination.links }}
 {% endblock %}
