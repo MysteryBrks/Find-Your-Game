@@ -11,6 +11,11 @@ $(document).ready(function() {
         placeholder: 'Exclude Tags (Optional)',
         allowClear: true
     });
+
+    // Limits checkbox to only one option
+    $('input[type="checkbox"]').on('change', function() {
+        $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+    });
 });
 
 
