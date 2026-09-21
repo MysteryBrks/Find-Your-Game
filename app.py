@@ -48,7 +48,8 @@ def index():
                        "MOBA", "Diplomacy", "Western", "Cold War", "Naval Combat", "Escape Room",
                        "Villain Protagonist", "Werewolves", "World War I", "Outbreak Sim", "Dwarves",
                        "Spaceships", "Social Deduction", "Medical Sim", "Dice", "Vikings",
-                       "Silent Protagonist", "Espionage", "Poker", "Tanks", "Minigames", "FMV")
+                       "Silent Protagonist", "Espionage", "Poker", "Tanks", "Minigames", "FMV"
+                       "Music")
     
     if request.method == "POST":
         session.clear()
@@ -56,8 +57,7 @@ def index():
         genres = request.form.getlist("genres")
         tags = request.form.getlist("tags")
         excludeds = request.form.getlist("excludeds")
-        min_copies = int(request.form.get("min copies"))
-        max_copies = int(request.form.get("max copies"))
+        copies_range = request.form.get("copies")
         # User input validation
         if not tags:
             return redirect("/")
@@ -120,13 +120,23 @@ def index():
                     if key in buffer:
                         data.pop(key, None)
 
-        if min_copies or max_copies:
+        if copies_range:
             data_buffer = data.copy()
+            copies_range = re.findall(r"\d+", copies_range)
+            min_copies = int(copies_range[0])
+            max_copies = int(copies_range[1])
+
+            # Check if min and max cpoies were assigned correctly
+            if min_copies > max_copies:
+                number = min_copies
+                min_copies = max_copies
+                max_copies = number
+
             for key in data_buffer:
-                copies_estimative = (re.findall(r"\d+", data[key]["owners"].replace(",","")))
-                copies_estimative = (int(copies_estimative[0]) + int(copies_estimative[1])) / 2
+                copies = re.findall(r"\d+", data[key]["owners"].replace(",",""))
+                copies = (int(copies[0]) + int(copies[1])) / 2
                 # Verify if games are in the desired range of copies
-                if not min_copies <= copies_estimative <= max_copies:
+                if not  min_copies <= copies <= max_copies:
                     data.pop(key, None)
 
         for game in data:
