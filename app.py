@@ -73,6 +73,7 @@ def index():
             # Takes the first genre selected
             data_request["genre"] = genres[0]
             data = steamspypi.download(data_request)
+            session["genres"] = genres
 
             # Proceeds to compare to every other genre,
             # if appid isn't in ALL selected genres, it's
@@ -109,8 +110,10 @@ def index():
                 for key in data_buffer:
                     if key not in buffer:
                         data.pop(key, None)
+        session["tags"] = tags
 
         if excludeds:
+            session["excludeds"] = excludeds
             for excluded in excludeds:
                 data_request["tag"] = excluded
                 buffer = steamspypi.download(data_request)
@@ -132,6 +135,7 @@ def index():
                 min_copies = max_copies
                 max_copies = number
 
+            session["copies"] = (min_copies + max_copies) / 2
             for key in data_buffer:
                 copies = re.findall(r"\d+", data[key]["owners"].replace(",",""))
                 copies = (int(copies[0]) + int(copies[1])) / 2
@@ -147,7 +151,13 @@ def index():
 
         return redirect("/games")
     else:
-        return render_template("index.html", genres=genres_available, tags=tags_available)
+        copies = session.get("copies")
+        if copies:
+            print(copies)
+        return render_template("index.html", genres=genres_available, tags=tags_available,
+                                chosen_genres=session.get("genres"), chosen_tags=session.get("tags"),
+                                chosen_excludeds=session.get("excludeds"), 
+                                copies=session.get("copies"))
 
 
 @app.route("/games")

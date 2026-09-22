@@ -9,7 +9,11 @@
         <div class="mb-3">
             <select class="js-basic-multiple" multiple="multiple" name="genres">
                 {% for genre in genres %}
-                <option value="{{ genre }}">{{ genre }}</option>
+                    {% if chosen_genres and genre in chosen_genres %}
+                    <option value="{{ genre }}" selected>{{ genre }}</option>
+                    {% else %}
+                    <option value="{{ genre }}">{{ genre }}</option>
+                    {% endif %}
                 {% endfor %}
             </select>
 
@@ -18,7 +22,11 @@
         <div class="mb-4">            
             <select class="js-basic-multiple" multiple="multiple" name="tags">
                 {% for tag in tags %}
-                <option value="{{ tag }}">{{ tag }}</option>
+                    {% if chosen_tags and tag in chosen_tags %}
+                    <option value="{{ tag }}" selected>{{ tag }}</option>
+                    {% else %}
+                    <option value="{{ tag }}">{{ tag }}</option>
+                    {% endif %}
                 {% endfor %}
             </select>
             <p>Recomended number: 2-3</p>       
@@ -27,22 +35,50 @@
         <div class="mb-4">
             <select class="js-basic-multiple" multiple="multiple" name="excludeds">
                 {% for tag in tags %}
-                <option value="{{ tag }}">{{ tag }}</option>
+                    {% if chosen_excludeds and tag in chosen_excludeds %}
+                    <option value="{{ tag }}" selected>{{ tag }}</option>
+                    {% else %}
+                    <option value="{{ tag }}">{{ tag }}</option>
+                    {% endif %}
                 {% endfor %}
             </select>
         </div>
 
         <div class="mb-4">
             <label>Copies sold/owners range: </label>
-            <input type="checkbox" name="copies" value="50000001 - 200000000">
+            {% if copies and 50000001 <= copies <= 200000000 %}
+                <input type="checkbox" checked name="copies" value="50000001 - 200000000">
+            {% else %}
+                <input type="checkbox" name="copies" value="50000001 - 200000000">
+            {% endif %}
             <label>50M+ |</label>
-            <input type="checkbox" name="copies" value="10000000 - 50000000">
+            
+            {% if copies and 10000000 <= copies <= 50000000 %}
+                <input type="checkbox" checked name="copies" value="10000000 - 50000000">
+            {% else %}
+                <input type="checkbox" name="copies" value="10000000 - 50000000">
+            {% endif %}
             <label>50M - 10M |</label>
-            <input type="checkbox" name="copies" value="1000000 - 10000000">
+
+            {% if copies and 1000000 <= copies <= 10000000 %}
+                <input type="checkbox" checked name="copies" value="1000000 - 10000000">
+            {% else %}
+                <input type="checkbox" name="copies" value="1000000 - 10000000">
+            {% endif %}
             <label>10M - 1M |</label>
-            <input type="checkbox" name="copies" value="500000 - 1000000">
+
+            {% if copies and 500000 <= copies <= 1000000 %}
+                <input type="checkbox" checked name="copies" value="500000 - 1000000">
+            {% else %}
+                <input type="checkbox" checked name="copies" value="500000 - 1000000">
+            {% endif %}
             <label>1M - 500.000 |</label>
-            <input type="checkbox" name="copies" value="500000 - 0">
+
+            {% if copies and 0 <= copies <= 500000 %}
+                <input type="checkbox" checked name="copies" value="500000 - 0">
+            {% else %}
+                <input type="checkbox" name="copies" value="500000 - 0">
+            {% endif %}
             <label>500.000 - 0</label>
         
         </div>
