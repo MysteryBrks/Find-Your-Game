@@ -61,7 +61,7 @@ def index():
         # User input validation
         if not tags:
             return redirect("/")
-
+        
         # Pull steam games by genres
         data_request = dict()
         data_request["request"] = "genre"
@@ -124,8 +124,10 @@ def index():
                         data.pop(key, None)
 
         if copies_range:
-            data_buffer = data.copy()
             copies_range = re.findall(r"\d+", copies_range)
+            if not copies_range:
+                return redirect("/")
+            data_buffer = data.copy()
             min_copies = int(copies_range[0])
             max_copies = int(copies_range[1])
 
@@ -151,9 +153,6 @@ def index():
 
         return redirect("/games")
     else:
-        copies = session.get("copies")
-        if copies:
-            print(copies)
         return render_template("index.html", genres=genres_available, tags=tags_available,
                                 chosen_genres=session.get("genres"), chosen_tags=session.get("tags"),
                                 chosen_excludeds=session.get("excludeds"), 
