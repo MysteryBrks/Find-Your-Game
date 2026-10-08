@@ -15,7 +15,7 @@ Find Your Game is a web application in flask made with the intent of searching a
 
 #### Files:
 
-[layout.html](templates/layout.html) - This is the layout used for all html templates, it contains necessary details for all html page like a basic navbar for returning to the index.html page. 
+[layout.html](templates/layout.html) - This is the layout used for all html templates, it contains necessary details for all html page like a basic navbar allowing the user a way of returning to the index.html page. It also contains links importing bootstrap, jQuery script and Select2 plugim, CSS style file. 
 
 [index.html](templates/index.html) - Index.html is the main page of the application, has the important purpose of welcoming the user and it's input, wich afterwards is transfered to gamer.html.
 This page cointains as already said, some input spaces for desired tags (minimal of 1 selected), genres (any amount, even none), excluded tags (any amount) and a range of amount of copies/owners.
@@ -28,7 +28,10 @@ Steam **genres** are very much less comprehensive than tags, it's only limited t
 
 **Range of copies/owners** is intended to filter games by the amount of copies sold or if it's free, the amount of owners. The overall range vary from 50 million copies to 0 copies, but because the way steamspypi is designed, this was divided in some subranges. Just like excluded tags and genres, it's use is entirely optional, and the search is trusted to user's volition.
 
-[games.html](templates/games.html) - Shows a list containg all games based on the applied filters by the user. The games are displayed from top to bottom on steam widgets, wich the user may click it to be redirected to the game official steam page. The construction of this html is quite simple as a browsing-scrolling page without a search bar. It was considered during the project to develop a search bar for specific games, but despite souding useful at first it doesn't correspond with the application intention wich is blind exploration. 
+[games.html](templates/games.html) - Shows a list containg all games based on the applied filters by the user. The games are displayed from top to bottom on steam widgets, wich the user may click it to be redirected to the game official steam page. A essential feature of this page is the dynamic pagination made possible by the flask-paginate library, it creates more pages accordily to the amount of games. In analysis, this html is quite simple as a browsing-scrolling page without a search bar. It was considered during the project to develop a search bar for specific games, but despite souding useful at first it doesn't correspond with the application intention wich is blind exploration. 
+
 OBSERVARTION: It's common, especially on a wide range of search, to show widgets not correctly loaded with a error message. In such cases is advised to click on the steam logo on the right bottom corner just outside the widget to counter this error. This problem is from steam embedding system in the creation of a game widget. 
+
+[app.py](app.py) - Python flask application, central pillar of the project. It contains data for index page, validation of user input and makes possible GET and POST methods across pages. Stores flask session data of the user for more friendly navigation and also functionality of the app (to save games data across index and games pages). The user's input for example, is saved even after being redirected to the games page.
 
 
