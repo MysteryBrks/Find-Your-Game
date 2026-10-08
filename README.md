@@ -2,7 +2,7 @@
 #### Video Demo:  <URL HERE>
 #### Description:
 Find Your Game is a web application in flask made with the intent of searching and filtering games based on Steam library data. The application's main function envolves around allowing the user giving some searching criteria like the amount of copies sold, Steam tags, genres, and it's even possible to exclude undesired tags.
-
+##
 #### Packages and plugin:
 
 *jQuery* - Needed for Select2 plugin
@@ -12,7 +12,7 @@ Find Your Game is a web application in flask made with the intent of searching a
 *flask-paginate* - Facilitate dynamic pagination of game.html
 
 *steamspypi* - Database collection of steampy API
-
+##
 #### Files:
 
 [layout.html](templates/layout.html) - This is the layout used for all html templates, it contains necessary details for all html page like a basic navbar allowing the user a way of returning to the index.html page. It also contains links importing bootstrap, jQuery script and Select2 plugim, CSS style file. 
