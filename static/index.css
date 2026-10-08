@@ -43,5 +43,8 @@ li.select2-results__message {
     background-color: #50586d !important;
 }
 
+textarea {
+    color: aliceblue !important;
+}
 /* !important is needed to overwrite select2 stylesheet */
 
