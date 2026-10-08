@@ -1,7 +1,7 @@
 # Find Your Game
 #### Video Demo:  <URL HERE>
 #### Description:
-Find Your Game is a web application in flask made with the intent of searching and filtering games based on Steam library data. The application's main function envolves around allowing the user giving some searching criteria like the amount of copies sold, Steam tags, genres, and it's even possible to exclude undesired tags.
+Find Your Game is a web application in flask made with the intent of searching and filtering games based on Steam library data. The application's main function envolves around allowing the user to give some searching criteria like the amount of copies sold, Steam tags, genres, and even to exclude undesired tags. This web application has a philosophy of allowing and even incentivizing exploration of it's features since your base intent is for the discovery of unknown steam games.
 ##
 #### Packages and plugin:
 
@@ -24,11 +24,11 @@ Steam **tags** are very comprehensive, ranging from _farming sim_ to _gore_. Bec
 
 Steam **genres** are very much less comprehensive than tags, it's only limited to basic terms: Strategy, indie, casual and etc. It's use is optional.
 
-**Excluded tags** are a way of searching for a range of games while excluding a undesired another range range of games, undesired ones. For example the user might search for "diplomacy" tagged games that aren't World War II themed. In this case he should still use the diplomacy tag but at the same time insert "Word War II" in the excluded tags category.
+**Excluded tags** are a way of searching for a range of games while excluding a undesired another range range of games, undesired ones. For example the user might search for "diplomacy" tagged games that aren't World War II themed. In this case he should still use the diplomacy tag but at the same time insert "World War II" in the excluded tags category.
 
-**Range of copies/owners** is intended to filter games by the amount of copies sold or if it's free, the amount of owners. The overall range vary from 50 million copies to 0 copies, but because the way steamspypi is designed, this was divided in some subranges. Just like excluded tags and genres, it's use is entirely optional, and the search is trusted to user's volition.
+**Range of copies/owners** is intended to filter games by the number of copies sold or if it's free, the number of owners. The overall range vary from 50 million copies to 0 copies, but because the way steamspypi is designed, this was divided in some subranges. Just like excluded tags and genres, it's use is entirely optional, and the search is trusted to user's volition.
 
-[games.html](templates/games.html) - Shows a list containg all games based on the applied filters by the user. The games are displayed from top to bottom on steam widgets, wich the user may click it to be redirected to the game official steam page. A essential feature of this page is the dynamic pagination made possible by the flask-paginate library, it creates more pages accordily to the amount of games. In analysis, this html is quite simple as a browsing-scrolling page without a search bar. It was considered during the project to develop a search bar for specific games, but despite souding useful at first it doesn't correspond with the application intention wich is blind exploration. 
+[games.html](templates/games.html) - Shows a list containg all games based on the filters applied by the user. The games are displayed from top to bottom on steam widgets, wich the user may click it to be redirected to the game official steam page. A essential feature of this page is the dynamic pagination made possible by the flask-paginate library, it creates more pages accordily to the amount of games. In analysis, this html is quite simple as a browsing-scrolling page without a search bar. It was considered during the project to develop a search bar for specific games, but despite souding useful at first it doesn't correspond with the application intention wich is blind exploration. 
 
 *OBSERVARTION*: It's common, especially on a wide range of search, to show widgets not correctly loaded with a error message. In such cases is advised to click on the steam logo on the right bottom corner just outside the widget to counter this error. This problem is from steam embedding system in the creation of a game widget. 
 
