@@ -34,4 +34,10 @@ OBSERVARTION: It's common, especially on a wide range of search, to show widgets
 
 [app.py](app.py) - Python flask application, central pillar of the project. It contains data for index page, validation of user input and makes possible GET and POST methods across pages. Stores flask session data of the user for more friendly navigation and also functionality of the app (to save games data across index and games pages). The user's input for example, is saved even after being redirected to the games page.
 
+[dropdown.js](static/dropdown.js) - Contains basic jQuery with Select2 plugin responsible for making select tag of multiple choices dropdown menu alike, much more user friendly. Very important to the application since it's necessary to accept multiple tags as a list input.
+
+[style.css](static/styles.css) - Main CSS stylesheet file. It has very basic CSS code and stylization, mostly colors, size of things and positioning of elements.
+
+[index.css](static/index.css) - Stylesheet made only for index.html because of needed changes in Select2 default style. Dedicated to fit more in the website aesthetics of dark blue.
+
 
