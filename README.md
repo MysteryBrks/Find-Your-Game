@@ -25,7 +25,6 @@ steamspypi - Database collection of steampy API
 [layout.html](templates/layout.html) - This is the layout used for all html templates, it contains necessary details for all html pages like a basic navbar allowing the user a way of returning to the index.html page. It also contains links importing Bootstrap, jQuery, and the Select2 plugin, and a CSS style file. 
 
 [index.html](templates/index.html) - Index.html is the main page of the application and has the important purpose of welcoming the user and its input, which afterwards is transferred to gamer.html.
-
 This page contains, as already said, some input spaces for desired tags (minimal of 1 selected), genres (any amount, even none), excluded tags (any amount), and a range of amounts of copies/owners.
 
 Steam **tags** are very comprehensive, ranging from farming sim to gore. Because of that, the user is expected to use it by your own discretion, acknowledging that the use of too many tags may cause the result of no games found, or if too few tags, may cause the contrary, a lot of games found. The use of tags is obligatory, and it's considered the main feature of the application's searching capabilities.
